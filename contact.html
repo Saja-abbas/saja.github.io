@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact • SAJA P T</title>
+  <meta name="description" content="Contact SAJA P T for collaborations, internships, or teaching assistance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav container">
+      <a class="logo" href="home.html">SAJA P T</a>
+      <div class="nav-right">
+        <a class="btn" href="home.html">Home</a>
+        <a class="btn" href="about.html">About</a>
+        <a class="btn" href="education.html">Education</a>
+        <a class="btn" href="skills.html">Skills</a>
+        <a class="btn" href="projects.html">Projects</a>
+        <a class="btn" href="contact.html">Contact</a>
+        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container" aria-labelledby="contact-title">
+
+      <div class="page-title reveal">
+        <p class="kicker">Say Hello</p>
+        <h1 id="contact-title">Contact</h1>
+        <p class="subtitle">Open to collaborations, internships, and teaching assistance. Prefer email or LinkedIn.</p>
+      </div>
+
+      <div class="contact-wrap reveal">
+
+        <!-- Contact form -->
+       <form
+  class="card contact-form"
+  action="https://docs.google.com/forms/d/e/1FAIpQLScDwp9HLMfvXUNSm2BYmu6iOaawZ2ZkJZQlirnehwSpZXzB7Q/formResponse"  method="POST"
+  target="hidden_iframe"
+  id="contactForm"
+  aria-label="Contact form"
+>
+  <h2 style="margin-bottom:1.25rem">Send a Message</h2>
+
+  <div class="form-row">
+    <div class="field">
+      <input id="name" name="entry.738901457" type="text" autocomplete="name" placeholder=" ">
+      <label for="name">Full name</label>
+      <span class="field-error" id="name-error"></span>
+    </div>
+    <div class="field">
+      <input id="email" name="entry.1418914008" type="email" autocomplete="email" placeholder=" ">
+      <label for="email">Email address</label>
+      <span class="field-error" id="email-error"></span>
+    </div>
+  </div>
+
+  <div class="field">
+    <input id="subject" name="entry.499232709" type="text" placeholder=" ">
+    <label for="subject">Subject (optional)</label>
+  </div>
+
+  <div class="field">
+    <textarea id="message" name="entry.515780591" rows="6" placeholder=" "></textarea>
+    <label for="message">Your message</label>
+    <span class="field-error" id="message-error"></span>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn" type="button" onclick="document.getElementById('contactForm').reset(); clearErrors();">Clear</button>
+    <button class="btn glow" type="button" id="submitBtn" onclick="handleFormSubmit()">Send message →</button>
+  </div>
+
+  <p id="form-success" style="display:none; color: var(--accent); margin-top: 1rem; font-weight: 500;">
+    I'll get back to you soon.
+  </p>
+</form>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<style>
+  .field-error {
+    color: #e05c5c;
+    font-size: 0.78rem;
+    margin-top: 0.25rem;
+    display: block;
+    min-height: 1rem;
+  }
+  input.invalid, textarea.invalid {
+    border-color: #e05c5c !important;
+  }
+</style>
+
+<script>
+  function clearErrors() {
+    ['name', 'email', 'message'].forEach(id => {
+      document.getElementById(id).classList.remove('invalid');
+      document.getElementById(id + '-error').textContent = '';
+    });
+  }
+
+  function handleFormSubmit() {
+    clearErrors();
+    const form = document.getElementById('contactForm');
+    let valid = true;
+
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const message = document.getElementById('message');
+
+    if (!name.value.trim()) {
+      name.classList.add('invalid');
+      document.getElementById('name-error').textContent = 'Full name is required.';
+      valid = false;
+    }
+
+    if (!email.value.trim()) {
+      email.classList.add('invalid');
+      document.getElementById('email-error').textContent = 'Email address is required.';
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      email.classList.add('invalid');
+      document.getElementById('email-error').textContent = 'Please enter a valid email.';
+      valid = false;
+    }
+
+    if (!message.value.trim()) {
+      message.classList.add('invalid');
+      document.getElementById('message-error').textContent = 'Message cannot be empty.';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    // All good — submit to Google Forms via iframe
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    form.submit();
+
+    setTimeout(() => {
+      form.reset();
+      clearErrors();
+      btn.textContent = 'Send message →';
+      btn.disabled = false;
+      const success = document.getElementById('form-success');
+      success.style.display = 'block';
+      setTimeout(() => success.style.display = 'none', 5000);
+    }, 800);
+  }
+</script>
+
+        <!-- Aside -->
+        <aside class="card contact-aside" style="display:flex;flex-direction:column;gap:0">
+          <h2 style="margin-bottom:1rem">Other Ways</h2>
+
+          <div class="aside-info">
+            <div class="aside-icon">✉️</div>
+            <div>
+              <div style="font-size:.78rem;color:var(--muted);margin-bottom:.15rem">Email</div>
+              <a href="mailto:sajaabbaspt@gmail.com">sajaabbaspt@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="aside-info">
+            <div class="aside-icon">💼</div>
+            <div>
+              <div style="font-size:.78rem;color:var(--muted);margin-bottom:.15rem">LinkedIn</div>
+              <a href="https://linkedin.com/in/saja-pt" target="_blank" rel="noopener">linkedin.com/in/saja-pt</a>
+            </div>
+          </div>
+
+          <div class="aside-info">
+            <div class="aside-icon">🐙</div>
+            <div>
+              <div style="font-size:.78rem;color:var(--muted);margin-bottom:.15rem">GitHub</div>
+              <a href="https://github.com/Saja-abbas" target="_blank" rel="noopener">github.com/Saja-abbas</a>
+            </div>
+          </div>
+
+          <div class="aside-info">
+            <div class="aside-icon">📷</div>
+            <div>
+              <div style="font-size:.78rem;color:var(--muted);margin-bottom:.15rem">Instagram</div>
+              <a href="https://instagram.com/saja_bbas" target="_blank" rel="noopener">instagram.com/saja_bbas</a>
+            </div>
+          </div>
+
+          <p class="muted" style="font-size:.82rem;margin-top:1.1rem;line-height:1.65;border-top:1px solid var(--border);padding-top:1rem">
+            💡 Tip: Replace the <code style="font-family:var(--font-m);background:rgba(255,255,255,.06);padding:.1rem .3rem;border-radius:.3rem">mailto</code> action with EmailJS or Netlify Forms for a backend-free submission flow.
+          </p>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+  <p>© <span id="year"></span> SAJA P T &nbsp;•&nbsp; SAD @ CUSAT &nbsp;•&nbsp; Built with HTML, CSS &amp; JS</p>
+  <ul class="social">
+    <li>
+      <a class="btn" href="https://github.com/Saja-abbas" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a class="btn" href="https://linkedin.com/in/saja-pt" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a class="btn" href="https://instagram.com/saja_bbas" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</footer>
+
+  <script src="javascript/script.js" defer></script>
+</body>
+</html>
