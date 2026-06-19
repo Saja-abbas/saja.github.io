@@ -28,10 +28,10 @@ function updateToggleLabel(theme) {
 }
 
 /* ─── Active nav link ─── */
-const currentPath = location.pathname.split("/").pop() || "home.html";
+const currentPath = location.pathname.split("/").pop() || "index.html";
 document.querySelectorAll(".nav-right a.btn").forEach(link => {
   const href = link.getAttribute("href");
-  if (href === currentPath || (currentPath === "" && href === "home.html")) {
+  if (href === currentPath || (currentPath === "" && href === "index.html")) {
     link.classList.add("active");
   }
 });
